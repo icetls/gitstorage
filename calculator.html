@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>计算器</title>
+  </head>
+  <body>
+    <div class="" id="app">
+      <input
+      type="text"
+      @keyup="calculate"
+      v-model="augend"
+      >
+      <span>+</span>
+      <input
+        type="text"
+        @keyup="calculate"
+        v-model="addend">
+      <span>=</span>
+      <input
+        type="text"
+        :value="sum">
+      <br><br>
+      <button
+      type="button"
+      name="button"
+      @click="reset">清空数据</button>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js"></script>
+    <script type="text/javascript">
+      const app=new Vue({
+        el:'#app',
+        data:{
+          augend:'',
+          addend:'',
+          sum:''
+        },
+        methods:{
+          calculate(){
+            this.sum=Number(this.augend)+Number(this.addend)
+          },
+          reset(){
+            this.sum='';
+            this.augend='';
+            this.addend='';
+            this.$emit('set')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
